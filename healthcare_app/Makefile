@@ -1,9 +1,3 @@
-ENV_LOCAL_COMPOSE_FILE = -f "docker-compose.local.yml"
-
-.PHONY: up_local_environment
-up_local_environment:
-	docker compose $(ENV_LOCAL_COMPOSE_FILE) -p healthcare-test-local up --build
-
 .PHONY: migrate
 migrate:
 	python manage.py migrate
