@@ -1,0 +1,22 @@
+FROM healthcare-test-base:latest
+
+WORKDIR /app/healthcare_app/
+
+COPY . .
+
+RUN poetry export --without-hashes -f requirements.txt --output requirements.txt \
+    && pip install --no-cache-dir -r requirements.txt
+
+ARG ENVIRONMENT
+ARG POSTGRES_URL
+ARG RABBITMQ_URL
+
+ENV ENVIRONMENT=$ENVIRONMENT
+ENV POSTGRES_URL=$POSTGRES_URL
+ENV RABBITMQ_URL=$RABBITMQ_URL
+
+RUN chmod +x /app/healthcare_app/scripts/api_entrypoint.sh  && chown -R appuser:appuser /app
+
+USER appuser
+
+CMD /app/healthcare_app/scripts/api_entrypoint.sh

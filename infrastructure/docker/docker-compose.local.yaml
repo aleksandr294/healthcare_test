@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  db_local:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: healthcare_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+    ports:
+      - "15000:5432"
+    volumes:
+      - db_data_local:/var/lib/postgresql/data
+    networks:
+      - network_healthcare_db_local
+
+networks:
+  network_healthcare_db_local:
+    driver: bridge
+
+volumes:
+  db_data_local:

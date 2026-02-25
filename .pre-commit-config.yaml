@@ -1,0 +1,43 @@
+repos:
+  # --------------------
+  # healthcare_app
+  # --------------------
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+      - id: black
+        name: black (healthcare_app)
+        entry: bash -c "cd healthcare_app && black . --check --diff --color"
+        language: system
+        pass_filenames: false
+        files: ^healthcare_app/
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.5.1
+    hooks:
+      - id: ruff
+        name: ruff (healthcare_app)
+        pass_filenames: false
+        files: ^healthcare_app/
+
+
+#   --------------------
+#   healthcare_analytics
+#   --------------------
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+      - id: black
+        name: black (healthcare_analytics)
+        entry: bash -c "cd healthcare_analytics && black . --check --diff --color"
+        language: system
+        pass_filenames: false
+        files: ^healthcare_analytics/
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.5.1
+    hooks:
+      - id: ruff
+        name: ruff (healthcare_analytics)
+        pass_filenames: false
+        files: ^healthcare_analytics/

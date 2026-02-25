@@ -1,0 +1,8 @@
+FROM python:3.12.4
+RUN apt install git
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir poetry psycopg2-binary poetry-plugin-export django_celery_beat
+
+
+RUN useradd -m appuser
+WORKDIR /app
